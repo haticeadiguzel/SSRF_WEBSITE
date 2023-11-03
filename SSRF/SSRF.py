@@ -6,11 +6,17 @@ import os
 app = Flask(__name__)
 
 def url_function(url):
-    webbrowser.get('firefox').open_new(url)
+    # webbrowser.get('opera').open(url)
+    options = {
+    'page-size': 'A4',
+    'encoding': 'UTF-8',
+    'no-outline': None
+    }
+
     try:
-        pdfkit.from_url(url, 'url.pdf')
+        pdfkit.from_url(url, 'url.pdf', options=options)
     except Exception as e:
-        print(e)
+        return "Error: ", e
     return url
 
 @app.route('/', methods=['GET', 'POST'])
