@@ -1,12 +1,10 @@
 from flask import Flask, request, render_template
-import webbrowser
 import pdfkit
 import os
 
 app = Flask(__name__)
 
 def url_function(url):
-    # webbrowser.get('opera').open(url)
     options = {
     'page-size': 'A4',
     'encoding': 'UTF-8',
@@ -14,7 +12,7 @@ def url_function(url):
     }
 
     try:
-        pdfkit.from_url(url, 'url.pdf', options=options)
+        pdfkit.from_url(url, 'SSRF.pdf', options=options)
     except Exception as e:
         return "Error: ", e
     return url
